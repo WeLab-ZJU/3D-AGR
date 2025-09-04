@@ -14,3 +14,21 @@ Welcome to 3D-GRC! This repository is aimed at helping researchers or developers
 git clone git@github.com:/xhb1514288815/3D-GRC.git
 ```
 ### 2. Prepare the enviroments
+```
+cd GRC
+conda create -n grc python=3.11
+conda activate grc
+pip3 install -r requirements.txt
+```
+
+### Compile the Cuda kernal
+```
+cd Cuda_kernal
+python compile.py install
+cp build/lib.linux-x86_64-cpython-311/CUDA_kernal_3dgrc.cpython-311-x86_64-linux-gnu.so GRC/
+```
+## Usage
+```
+cd GRC
+python GRC.py -c config/default.yaml -g 0
+```
