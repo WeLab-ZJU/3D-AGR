@@ -12,7 +12,7 @@ Welcome to 3D-GRC! This repository is aimed at helping researchers or developers
 - Ubuntu Linux (22.04.1 LTS)
 - Anaconda3
 - PyTorch
-- 
+
 ## Installation
 
 ### 1. Download project
