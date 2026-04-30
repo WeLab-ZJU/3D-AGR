@@ -3,7 +3,7 @@ import numpy as np
 from torch import nn
 import tifffile as tf
 import time
-from CUDA_kernal_3dgrc import AccRendering,AccRendering_Gradient,AccRendering_e2e,AccRendering_sparse_e2e
+from CUDA_kernal_3dagr import AccRendering,AccRendering_Gradient,AccRendering_e2e,AccRendering_sparse_e2e
 
 
 class GuassModel_cuda(nn.Module):
