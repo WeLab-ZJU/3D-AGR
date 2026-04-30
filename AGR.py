@@ -1,5 +1,5 @@
-# python GRC.py -c config/default.yaml -g 0
-from GRC_Run import Run
+# python AGR.py -c config/default.yaml -g 0
+from AGR_Run import Run
 from omegaconf import OmegaConf
 from datetime import datetime
 import os
@@ -14,7 +14,7 @@ import evaluate
 warnings.filterwarnings("ignore")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="3DGRC")
+    parser = argparse.ArgumentParser(description="3DAGR")
     parser.add_argument('-c', 
                         type=str, 
                         default='config/default.yaml', help='Path to config file')
@@ -38,15 +38,15 @@ if __name__ == "__main__":
     img = torch.from_numpy(raw).float().cuda()
     Com = Run(img,config)
     Com.Run()
-    Com.save_h5(output_dir+'/3dgrc.h5')
-    Res = Com.Render(output_dir+'/3dgrc.h5')
+    Com.save_h5(output_dir+'/3dagr.h5')
+    Res = Com.Render(output_dir+'/3dagr.h5')
 
     psnr = evaluate.calc_psnr(raw,Res,config.data.Max)
     ssim = evaluate.calc_ssim(raw,Res,config.data.Max)
 
-    ratio = os.path.getsize(output_dir+'/org.tif')/os.path.getsize(output_dir+'/3dgrc.h5')
+    ratio = os.path.getsize(output_dir+'/org.tif')/os.path.getsize(output_dir+'/3dagr.h5')
     
-    tf.imwrite(output_dir+'/3dgrc_result.tif',Res)
+    tf.imwrite(output_dir+'/3dagr_result.tif',Res)
     print("PSNR: %.4f, SSIM: %.4f, Ratio: %.4f"%(psnr,ssim,ratio))
     np.savetxt(output_dir+'/3dgrc_ratio_%.4f_psnr_%.4f_ssim_%.4f.txt'%(ratio,psnr,ssim),np.array([ratio,psnr,ssim]))
     shutil.copytree('Temp',output_dir+'/Temp')
